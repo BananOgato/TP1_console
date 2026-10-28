@@ -151,3 +151,4 @@ void calcul_coord_polaires(t_point tab_pts[], int taille, t_point* ref) {
 		tab_pts[i].dist = distance(&tab_pts[0], &tab_pts[i]);
 	}
 }
+//Allo
