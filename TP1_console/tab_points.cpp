@@ -152,3 +152,4 @@ void calcul_coord_polaires(t_point tab_pts[], int taille, t_point* ref) {
 	}
 }
 //Allo
+//baguette baguette
