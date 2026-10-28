@@ -139,8 +139,11 @@
     </Manifest>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="fichier.cpp" />
+    <ClCompile Include="tab_points.cpp" />
     <ClCompile Include="TP1_console.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="tab_points.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
