@@ -6,8 +6,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "tab_points.h"
-//#include "WINBGIM.h"
-#include "affichage.h"
+#include "tab_affichage.h"
 
 /* ======== ========== ========== ========== ========== ========== ========== ========== =======  /
  * MAIN
@@ -37,11 +36,12 @@ int main() {
 	trier_pts(tab_pts, TAILLE);
 
 	for (int i = 0; i < TAILLE; i++) {
-		printf("%d ; %d ; dist: %lf ; angle %lf\n", tab_pts[i].posx, tab_pts[i].posy, (i) ? tab_pts[i].dist : 0, (i) ? tab_pts[i].rad : 0);
+		printf("%d:    %d ; %d ; dist: %lf ; angle %lf\n", i, tab_pts[i].posx, tab_pts[i].posy, (i) ? tab_pts[i].dist : 0, (i) ? tab_pts[i].rad : 0);
 	}
 	
-	//mode_graphique();
-	//dessiner_pt(100, 100, 0);
+	mode_graphique();
+	afficher_pts_en_ordre(tab_pts, TAILLE);
+	pause_ecran();
 
 
 	return EXIT_SUCCESS;

@@ -48,6 +48,12 @@ typedef struct {
  /// <returns></returns>
 double prod_vectoriel(t_point* p0, t_point* p1, t_point* p2);
 
+/// <summary>
+/// 
+/// </summary>
+/// <param name="pA"></param>
+/// <param name="pB"></param>
+/// <returns></returns>
 double distance(t_point* pA, t_point* pB);
 
 int alea(int min, int max);

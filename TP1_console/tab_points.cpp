@@ -43,7 +43,7 @@ double prod_vectoriel(t_point* p_ref, t_point* pA, t_point* pB) {
 double coord_polaire(t_point* pA, t_point* pB, t_point* h_ref) { // QUESTION AU PROFF CAR PAS CLAIR
 	return (prod_vectoriel(h_ref, pA, pB) > 0) ?
 		asin((pB->posy - pA->posy) / distance(pA, pB)) :
-		(asin((pB->posy - pA->posy) / distance(pA, pB))) + (PI / 2);
+		(PI - asin((pB->posy - pA->posy) / distance(pA, pB)));
 }
 
 /* ======== ========== ========== ========== ========== ========== ========== ========== ======= */
@@ -151,5 +151,3 @@ void calcul_coord_polaires(t_point tab_pts[], int taille, t_point* ref) {
 		tab_pts[i].dist = distance(&tab_pts[0], &tab_pts[i]);
 	}
 }
-//Allo
-//baguette baguette
