@@ -14,7 +14,7 @@
  * DEFINITIONS types
  * ======== ========== ========== ========== ========== ========== ========== ========== ======= */
 
-typedef t_point t_element;
+typedef int t_element;
 
 /* ======== ========== ========== ========== ========== ========== ========== ========== =======  /
  * DEFINITIONS Structure
@@ -23,6 +23,7 @@ typedef t_point t_element;
 typedef struct {
 	t_element* items;
 	int sommet;
+	int max;
 } t_pile;
 
 /* ======== ========== ========== ========== ========== ========== ========== ========== =======  /
@@ -57,6 +58,13 @@ int get_sommet(const t_pile* pile, t_element* element);
 /// <param name="element">l'element dans lequel sera injecté l'element sous le sommet de la pile</param>
 /// <returns>1 pour succes, 0 pour echec</returns>
 int get_suiv_sommet(const t_pile* pile, t_element* element);
+
+/// <summary>
+/// Permet d'obtenir la taille de la pile pile
+/// </summary>
+/// <param name="pile">la pile a tester</param>
+/// <returns>la taille de la pile</returns>
+int get_pile_size(const t_pile* pile);
 
 /// <summary>
 /// Permet de vérifier si une pile pile est pleine

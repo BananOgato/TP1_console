@@ -14,26 +14,28 @@ t_pile init_pile(int taille) {
 	
 	// détection d'erreur d'allocation de memoire.
 	if (pile.items == NULL) {
-		printf("Erreur d'allocation de memoire.\n");
+		printf("Erreur d'allocation de memoire\n");
 		pile.sommet = -1;
 		return pile;
 	}
+	pile.max = taille;
 	pile.sommet = -1;
-	
 	return pile;
 }
 
 /* ======== ========== ========== ========== ========== ========== ========== ========== ======= */
 
 void liberer_pile(t_pile* pile) {
-	free(pile);
+	free(pile->items);
 }
 
 /* ======== ========== ========== ========== ========== ========== ========== ========== ======= */
 
 int get_sommet(const t_pile* pile, t_element* element) {
-	if (pile->sommet < 0)
+	if (vide(pile)) {
+		printf("ERREUR la pile est vide");
 		return 0;
+	}
 
 	*element = pile->items[pile->sommet];
 
@@ -55,7 +57,7 @@ int get_suiv_sommet(const t_pile* pile, t_element* element) {
 
 void push(t_pile* pile, t_element element) {
 	if (pleine(pile)) {
-		printf("ERREUR la pile est pleine");
+		printf("ERREUR la pile est pleine\n");
 		return;
 	}
 
@@ -67,7 +69,7 @@ void push(t_pile* pile, t_element element) {
 
 void pop(t_pile* pile) {
 	if (vide(pile)) {
-		printf("ERREUR la pile est vide");
+		printf("ERREUR la pile est vide\n");
 		return;
 	}
 
@@ -76,8 +78,22 @@ void pop(t_pile* pile) {
 
 /* ======== ========== ========== ========== ========== ========== ========== ========== ======= */
 
-/*void display(t_pile* pile, int taille) {
-	for (int i = 0; i < taille; i++) {
-		printf("");
-	}
-}*/
+int get_pile_size(const t_pile* pile) {
+	return pile->max;
+}
+
+/* ======== ========== ========== ========== ========== ========== ========== ========== ======= */
+
+int pleine(const t_pile* pile) {
+	if (pile->sommet >= pile->max - 1)
+		return 1;
+	return 0;
+}
+
+/* ======== ========== ========== ========== ========== ========== ========== ========== ======= */
+
+int vide(const t_pile* pile) {
+	if (pile->sommet < 0)
+		return 1;
+	return 0;
+}

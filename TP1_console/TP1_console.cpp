@@ -15,24 +15,25 @@
 
 
 int main() {
+	/*
 	//Variables
 	t_point tab_pts[TAILLE], h_ref;
 	int pos_pt_min;
 
-	/*initialise le générateur “rand()” */
+	// initialise le générateur "rand()"
 	srand(time(NULL));
-	/*Initialise tableau avec des points aléatoires*/
+	// Initialise tableau avec des points aléatoires
 	alea(0, TAILLE);
 
 	init_tab_alea(tab_pts, TAILLE, 1400, 800);
 
 	pos_pt_min = trouver_pt_minimal(tab_pts, TAILLE);
-	/*Permutation pour obtenir le h_ref*/
+	// Permutation pour obtenir le h_ref
 	h_ref = placer_pt_reference(tab_pts, pos_pt_min);
 
 	printf("%d : %d\n", h_ref.posx, h_ref.posy);
 
-	/*Calcul et tri des angles polaires*/
+	// Calcul et tri des angles polaires
 	calcul_coord_polaires(tab_pts, TAILLE, &h_ref);
 	trier_pts(tab_pts, TAILLE);
 
@@ -42,8 +43,25 @@ int main() {
 	
 	mode_graphique();
 	afficher_pts_en_ordre(tab_pts, TAILLE);
-	pause_ecran();
+	pause_ecran();*/
 
+	t_pile pile = init_pile(5);
+
+	for (int i = 0; i < 6; i++)
+		push(&pile, i+3);
+
+	for (int i = 0; i < 6; i++)
+		printf("element %d: %d\n", i, pile.items[i]);
+
+	t_element sommet;
+	get_sommet(&pile, &sommet);
+	printf("sommet: %d\n", sommet);
+	pop(&pile);
+	get_sommet(&pile, &sommet);
+	printf("sommet: %d\n", sommet);
+
+
+	liberer_pile(&pile);
 
 	return EXIT_SUCCESS;
 }
