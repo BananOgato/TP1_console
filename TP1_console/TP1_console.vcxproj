@@ -141,6 +141,7 @@
   <ItemGroup>
     <ClCompile Include="affichage.cpp" />
     <ClCompile Include="tab_affichage.cpp" />
+    <ClCompile Include="tab_pile.cpp" />
     <ClCompile Include="tab_points.cpp" />
     <ClCompile Include="TP1_console.cpp" />
     <ClCompile Include="WINBGIM.cpp" />
@@ -148,6 +149,7 @@
   <ItemGroup>
     <ClInclude Include="affichage.h" />
     <ClInclude Include="tab_affichage.h" />
+    <ClInclude Include="tab_pile.h" />
     <ClInclude Include="tab_points.h" />
     <ClInclude Include="WINBGIM.h" />
   </ItemGroup>
