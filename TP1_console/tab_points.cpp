@@ -16,13 +16,6 @@ double distance(t_point* pA, t_point* pB) {
 
 /* ======== ========== ========== ========== ========== ========== ========== ========== ======= */
 
-/// <summary>
-/// Permet de faire le produit vectoriel de v(p_ref pa) X v(p_ref pB)
-/// </summary>
-/// <param name="p_ref"></param>
-/// <param name="pA"></param>
-/// <param name="pB"></param>
-/// <returns></returns>
 double prod_vectoriel(t_point* p_ref, t_point* pA, t_point* pB) {
 	return (pA->posx - p_ref->posx) * (pB->posy - p_ref->posy)
 		   - (pA->posy - p_ref->posy) * (pB->posx - p_ref->posx);

@@ -40,13 +40,13 @@ typedef struct {
  * ======== ========== ========== ========== ========== ========== ========== ========== ======= */
 
  /// <summary>
- /// Permet de faire le produit vectoriel P1xP2 par rapport au point P_ref
+ /// Permet de faire le produit vectoriel de v(p_ref pa) X v(p_ref pB)
  /// </summary>
- /// <param name="p0">Le point d'origine</param>
- /// <param name="p1">Le point A</param>
- /// <param name="p2">Le point B</param>
- /// <returns></returns>
-double prod_vectoriel(t_point* p0, t_point* p1, t_point* p2);
+ /// <param name="p_ref"></param>
+ /// <param name="pA"></param>
+ /// <param name="pB"></param>
+ /// <returns>v(p_ref pa) X v(p_ref pB)</returns>
+double prod_vectoriel(t_point* p_ref, t_point* pA, t_point* pB);
 
 /// <summary>
 /// 

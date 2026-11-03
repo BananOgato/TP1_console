@@ -27,6 +27,7 @@ t_pile init_pile(int taille) {
 
 void liberer_pile(t_pile* pile) {
 	free(pile->items);
+	pile->items = NULL;
 }
 
 /* ======== ========== ========== ========== ========== ========== ========== ========== ======= */

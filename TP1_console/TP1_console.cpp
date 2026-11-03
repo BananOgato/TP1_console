@@ -13,9 +13,10 @@
  * MAIN
  * ======== ========== ========== ========== ========== ========== ========== ========== ======= */
 
-
 int main() {
-	/*
+	/* ==== ========== ========== ========== ========== ========== ========== ========== ======= */
+	// INITIALISATION 
+
 	//Variables
 	t_point tab_pts[TAILLE], h_ref;
 	int pos_pt_min;
@@ -24,8 +25,10 @@ int main() {
 	srand(time(NULL));
 	// Initialise tableau avec des points aléatoires
 	alea(0, TAILLE);
-
 	init_tab_alea(tab_pts, TAILLE, 1400, 800);
+
+	/* ==== ========== ========== ========== ========== ========== ========== ========== ======= */
+	// TRIE DES POINTS
 
 	pos_pt_min = trouver_pt_minimal(tab_pts, TAILLE);
 	// Permutation pour obtenir le h_ref
@@ -38,30 +41,51 @@ int main() {
 	trier_pts(tab_pts, TAILLE);
 
 	for (int i = 0; i < TAILLE; i++) {
-		printf("%d:    %d ; %d ; dist: %lf ; angle %lf\n", i, tab_pts[i].posx, tab_pts[i].posy, (i) ? tab_pts[i].dist : 0, (i) ? tab_pts[i].rad : 0);
+		printf("%d:    %d ; %d ; dist: %lf ; angle %lf\n", i, tab_pts[i].posx, tab_pts[i].posy, 
+			  (i) ? tab_pts[i].dist : 0, (i) ? tab_pts[i].rad : 0);
 	}
 	
 	mode_graphique();
 	afficher_pts_en_ordre(tab_pts, TAILLE);
-	pause_ecran();*/
+	//pause_ecran();
 
-	t_pile pile = init_pile(5);
+	/* ==== ========== ========== ========== ========== ========== ========== ========== ======= */
+	// ALGORITHME DU PARCOURS DE GRAHAM (avec aide de wikipedia)
 
-	for (int i = 0; i < 6; i++)
-		push(&pile, i+3);
+	t_pile pile = init_pile(TAILLE);
 
-	for (int i = 0; i < 6; i++)
-		printf("element %d: %d\n", i, pile.items[i]);
+	for (int i = 0; i < 3; i++)
+		push(&pile, tab_pts[1]);
+	
+	t_point sommet, second;
 
-	t_element sommet;
+	for (int i = 0; i < 2; i++)
+		push(&pile, tab_pts[i]);
+
+	for (int i = 2; i < TAILLE; i++) {
+		get_sommet(&pile, &sommet);
+		get_suiv_sommet(&pile, &second);
+		
+		while (prod_vectoriel(&sommet, &second, &tab_pts[i]) > 0) {
+			pop(&pile);
+			get_sommet(&pile, &sommet);
+			get_suiv_sommet(&pile, &second);
+		}
+		push(&pile, tab_pts[i]);
+	}
 	get_sommet(&pile, &sommet);
-	printf("sommet: %d\n", sommet);
-	pop(&pile);
-	get_sommet(&pile, &sommet);
-	printf("sommet: %d\n", sommet);
+	get_suiv_sommet(&pile, &second);
 
+	for (int i = 0; i < pile.sommet; i++) {
+		printf("point %d: (%d; %d)\n", i + 1, pile.items[i + 1].posx, pile.items[i + 1].posy);
+		dessiner_lig(pile.items[i].posx, pile.items[i].posy, 
+					 pile.items[i + 1].posx, pile.items[i + 1].posy);
+	}
+	dessiner_lig(tab_pts[0].posx, tab_pts[0].posy, sommet.posx, sommet.posy);
 
-	liberer_pile(&pile);
+	pause_ecran();
+
+	/* ======== ========== ========== ========== ========== ========== ========== ========== ======= */
 
 	return EXIT_SUCCESS;
 }
