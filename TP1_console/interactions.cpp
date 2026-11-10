@@ -52,7 +52,7 @@ FILE* choisir_fichier(void) {
 		if (fichier == NULL) {
 			printf("Erreur: L'ouverture du fichier a echoue");
 		}
-	} while (nom_fichier == NULL);
+	} while (fichier == NULL);
 	//Retourne le pointeur du fichier ouvert
 	return fichier;
 }
