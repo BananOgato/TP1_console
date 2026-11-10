@@ -3,6 +3,7 @@
  /* ======== ========== ========== ========== ========== ========== ========== ========== */
  /*                              DEFINITIONS DE FONCTIONS								 */
  /* ======== ========== ========== ========== ========== ========== ========== ========== */
+
  //Fonction qui demande le mode voulu (Avec aide de TRIGONO.cpp du cours 04)
 int demander_mode(void) {
 	//Variables pour le choix de l'utilisateur
@@ -30,6 +31,7 @@ int demander_mode(void) {
 }
 
 /* ======== ========== ========== ========== ========== ========== ========== ========== */
+
 //Fonction qui permet de sélectionner un des fichiers points
 FILE* choisir_fichier(void) {
 	//Variable pour le nom du fichier
@@ -56,6 +58,7 @@ FILE* choisir_fichier(void) {
 }
 
 /* ======== ========== ========== ========== ========== ========== ========== ========== */
+
 //Fonction qui lit et assigne les points du fichier dans le tableau dynamique
 t_point* lire_points(FILE* fichier, int* nb_pts) {
 	//Valeur pour la lecture du nombre de points

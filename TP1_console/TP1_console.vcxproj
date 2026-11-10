@@ -151,6 +151,7 @@
   <ItemGroup>
     <ClInclude Include="affichage.h" />
     <ClInclude Include="graham.h" />
+    <ClInclude Include="interactions.h" />
     <ClInclude Include="tab_affichage.h" />
     <ClInclude Include="tab_pile.h" />
     <ClInclude Include="tab_points.h" />
