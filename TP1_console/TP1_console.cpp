@@ -1,3 +1,16 @@
+/* ======== ========== ========== ========== ========== ========== ========== ========== ======== /
+ * Par : MUC Briana et LABRE Paul
+ * Date : 10 nov 2026
+ *
+ * ce programme permet de jouer avec l'algorithme de graham
+ * il possede 3 modes:
+ * - Appliquer l'algorithme a 20 point repartis aleatoirement
+ * - Appliquer l'algorithme a un fichier de point predefinis
+ * - Faire la moyenne sur un nombre de points de l’enveloppe
+ * 
+ * Le github associer: https://github.com/BananOgato/TP1_console/commits/Graham_/
+ * ======== ========== ========== ========== ========== ========== ========== ========== ======= */
+
 #define _CRT_SECURE_NO_WARNINGS
 
 /* ======== ========== ========== ========== ========== ========== ========== ========== =======  /
@@ -40,19 +53,19 @@ int main() {
 	//Demande du mode à l'utilisateur
 	mode = demander_mode();
 
-	//Pour le mode aléatoire
-	if (mode == 1) {
+	switch (mode) {
+	case 1: //Pour le mode aléatoire
 		nb_pts = TAILLE;
 		//Allocation dynamique avec malloc
 		tab_pts = (t_point*)malloc(nb_pts * sizeof(t_point));
 		//Validation de l'allocation
 		assert(tab_pts != NULL);
 		init_tab_alea(tab_pts, nb_pts, MAX_X, MAX_Y);
-	}
-	//Pour le mode fichier
-	else if (mode == 2) {
-		FILE* fichier = choisir_fichier();
+		break;
+	case 2: //Pour le mode fichier
+		FILE * fichier = choisir_fichier();
 		tab_pts = lire_points(fichier, &nb_pts);
+		break;
 	}
 
 	/* ==== ========== ========== ========== ========== ========== ========== ========== ======= */

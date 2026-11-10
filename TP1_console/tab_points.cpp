@@ -1,10 +1,18 @@
+/* ======== ========== ========== ========== ========== ========== ========== ========== ======== /
+ * Par : MUC Briana et LABRE Paul
+ * Date : 28 oct 2026
+ *
+ * Cette libraries permet de gerer les types t_point
+ * ======== ========== ========== ========== ========== ========== ========== ========== ======= */
+
+
 #include "tab_points.h"
 
 /* ======== ========== ========== ========== ========== ========== ========== ========== =======  /
  * FONCTIONS
  * ======== ========== ========== ========== ========== ========== ========== ========== ======= */
 
-// DISTANCE :
+// DISTANCE : (Par Paul)
 // fais la racine carré de la somme des difference X et Y au carré (la norme du vecteur AB)
 double distance(t_point* pA, t_point* pB) {
 	return sqrt(CARRE(pA->posx - pB->posx) + CARRE(pA->posy - pB->posy));
@@ -12,7 +20,7 @@ double distance(t_point* pA, t_point* pB) {
 
 /* ======== ========== ========== ========== ========== ========== ========== ========== ======= */
 
-// PROD_VECTORIEL :
+// PROD_VECTORIEL : (Par Paul)
 //   le produit vectoriel ~ AxB
 //   (Ax - Rx) * (By - Ry)  -  (Ay - Ry) * (Bx - Rx) 
 double prod_vectoriel(t_point* p_ref, t_point* pA, t_point* pB) {
@@ -22,7 +30,7 @@ double prod_vectoriel(t_point* p_ref, t_point* pA, t_point* pB) {
 
 /* ======== ========== ========== ========== ========== ========== ========== ========== ======= */
 
-// COORD_POLAIRE :
+// COORD_POLAIRE : (Par Paul)
 // SI xB > xA
 //	 retourner l'angle grace a l'arcsin
 // SINON
@@ -37,12 +45,14 @@ double coord_polaire(t_point* pA, t_point* pB, t_point* h_ref) {
 
 /* ======== ========== ========== ========== ========== ========== ========== ========== ======= */
 
+// (par Briana)
 int alea(int min, int max) {	// retourne un entier aléatoire dans [min, max]
 	return (rand() % (max - min + 1) + min);
 }
 
 /* ======== ========== ========== ========== ========== ========== ========== ========== ======= */
 
+// (par Briana)
 void init_tab_alea(t_point tab_pts[], int taille, int maxx, int maxy) {
 	//randomize les points dans le tableau pour les x
 	for (int i = 0;i < taille;i++) {
@@ -65,7 +75,7 @@ void init_tab_alea(t_point tab_pts[], int taille, int maxx, int maxy) {
 
 /* ======== ========== ========== ========== ========== ========== ========== ========== ======= */
 
-// TROUVER_PT_MINIMAL :
+// TROUVER_PT_MINIMAL : (Par Paul)
 // on retiens dans tab_index la position du tableau
 // en parcours toutes les cases du tableau et on retiens la position si
 //	 la position Y de la case pos est plus petite que tab_index
@@ -88,6 +98,7 @@ int trouver_pt_minimal(const t_point tab_pts[], int taille) {
 
 /* ======== ========== ========== ========== ========== ========== ========== ========== ======= */
 
+// (par Briana)
 void swap(t_point tab_pts[], int a, int b) {
 	t_point temp = tab_pts[a]; /*Temporaire pour variable a*/
 	/*Permutation des variables*/
@@ -97,6 +108,7 @@ void swap(t_point tab_pts[], int a, int b) {
 
 /* ======== ========== ========== ========== ========== ========== ========== ========== ======= */
 
+// (par Briana)
 t_point placer_pt_reference(t_point tab_pts[], int pos_min) {
 	pos_min = trouver_pt_minimal(tab_pts, TAILLE);	/*Indice du point minimal*/
 	/*Permutation point minimal et point case 0*/
@@ -112,6 +124,7 @@ t_point placer_pt_reference(t_point tab_pts[], int pos_min) {
 
 /* ======== ========== ========== ========== ========== ========== ========== ========== ======= */
 
+// (par Briana)
 void trier_pts(t_point tab_pts[], int taille) {
 	/*Triage des points par sélection*/
 	for (int i = 1;i < taille - 1;i++) {		//Point min reste dans tab_pts[0]
@@ -134,7 +147,7 @@ void trier_pts(t_point tab_pts[], int taille) {
 
 /* ======== ========== ========== ========== ========== ========== ========== ========== ======= */
 
-// CALCUL_COORD_POLAIRES :
+// CALCUL_COORD_POLAIRES : (Par Paul)
 // Pour tout les point i du tableau
 //	 Ajouter dans la composante rad du point: la coordonnée polaire du point i en fonction du point 0
 //	 Ajouter dans la composante dist du point: la distance entre le point i et le point 0

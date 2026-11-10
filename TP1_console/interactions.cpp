@@ -1,10 +1,17 @@
+/* ======== ========== ========== ========== ========== ========== ========== ========== ======== /
+ * Par : MUC Briana
+ * Date : 10 nov 2026
+ *
+ * DESCIRPTION
+ * ======== ========== ========== ========== ========== ========== ========== ========== ======= */
+
 #include "interactions.h"
 
- /* ======== ========== ========== ========== ========== ========== ========== ========== */
- /*                              DEFINITIONS DE FONCTIONS								 */
- /* ======== ========== ========== ========== ========== ========== ========== ========== */
+/* ======== ========== ========== ========== ========== ========== ========== ========== */
+/*                              DEFINITIONS DE FONCTIONS								 */
+/* ======== ========== ========== ========== ========== ========== ========== ========== */
 
- //Fonction qui demande le mode voulu (Avec aide de TRIGONO.cpp du cours 04)
+//Fonction qui demande le mode voulu (Avec aide de TRIGONO.cpp du cours 04)
 int demander_mode(void) {
 	//Variables pour le choix de l'utilisateur
 	unsigned char choix;
