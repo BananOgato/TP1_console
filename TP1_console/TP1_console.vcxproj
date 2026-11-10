@@ -141,6 +141,7 @@
   <ItemGroup>
     <ClCompile Include="affichage.cpp" />
     <ClCompile Include="graham.cpp" />
+    <ClCompile Include="interactions.cpp" />
     <ClCompile Include="tab_affichage.cpp" />
     <ClCompile Include="tab_pile.cpp" />
     <ClCompile Include="tab_points.cpp" />
