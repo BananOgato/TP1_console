@@ -110,7 +110,8 @@ void swap(t_point tab_pts[], int a, int b) {
 
 // (par Briana)
 t_point placer_pt_reference(t_point tab_pts[], int pos_min) {
-	pos_min = trouver_pt_minimal(tab_pts, TAILLE);	/*Indice du point minimal*/
+	/*
+	pos_min = trouver_pt_minimal(tab_pts, TAILLE);	Indice du point minimal*/
 	/*Permutation point minimal et point case 0*/
 	swap(tab_pts, 0, pos_min);
 	/*Nouveau point de référence horizontale*/

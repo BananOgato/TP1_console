@@ -34,6 +34,8 @@ int demander_mode(void) {
 		break;
 	case '2': return 2;
 		break;
+	default:
+		return 0;
 	}
 }
 
@@ -82,7 +84,7 @@ t_point* lire_points(FILE* fichier, int* nb_pts) {
 
 	//Boucle de lecture et assignation des points
 	for (int i = 0;i < n;i++) {
-		fscanf(fichier, "%lf %lf", &tab_dyn[i].posx, &tab_dyn[i].posy);
+		fscanf(fichier, "%d %d", &tab_dyn[i].posx, &tab_dyn[i].posy);
 		tab_dyn[i].position = -1;
 
 	}

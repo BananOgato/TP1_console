@@ -31,11 +31,16 @@ int algo_Graham_scan(t_point tab_pts[], int nb_pts, t_pile* pile_Graham) {
 		get_suiv_sommet(pile_Graham, &second);
 		
 		// Segment Sommet-Second-Suivant est un virage vers la droite
-		while (prod_vectoriel(&sommet, &second, &tab_pts[i]) > 0) {
-			// Dépile pB de la pile
-			enlever_a_pile(pile_Graham);
+		while (pile_Graham->sommet>=1) {
 			get_sommet(pile_Graham, &sommet);
 			get_suiv_sommet(pile_Graham, &second);
+
+			if (prod_vectoriel(&second, &sommet, &tab_pts[i]) > 0) {
+				// Dépile pB de la pile
+				enlever_a_pile(pile_Graham);
+			}
+			else
+				break;
 		}
 		// Empile le point pi dans la pile
 		ajouter_a_pile(pile_Graham, tab_pts[i]);
