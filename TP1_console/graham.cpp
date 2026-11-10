@@ -16,15 +16,23 @@ int algo_Graham_scan(t_point tab_pts[], int nb_pts, t_pile* pile_Graham, int aff
 
 	*pile_Graham = init_pile(nb_pts);
 
-	// Empile p0, p1
-	for (int i = 0; i < 2; i++) {
+	// Empile p0, p1, p2
+	for (int i = 0; i < 3; i++) {
 		ajouter_a_pile(pile_Graham, tab_pts[i]);
 	}
 	if (affichage) {
 		dessiner_lig(
+			//Pour p0 vers p1
 			pile_Graham->items[0].posx, pile_Graham->items[0].posy,
 			pile_Graham->items[1].posx, pile_Graham->items[1].posy
 		);
+
+		dessiner_lig(
+			//Pour p1 vers p2
+			pile_Graham->items[1].posx, pile_Graham->items[1].posy,
+			pile_Graham->items[2].posx, pile_Graham->items[2].posy
+		);
+
 		delai_ecran(DELAIS_ECRANS);
 	}
 
@@ -32,7 +40,7 @@ int algo_Graham_scan(t_point tab_pts[], int nb_pts, t_pile* pile_Graham, int aff
 	t_point sommet, second;
 
 	// Pour les points p3 à pN-1
-	for (int i = 2; i < nb_pts; i++) {
+	for (int i = 3; i < nb_pts; i++) {
 		// Copie du point sommet de la pile (pB)
 		get_sommet(pile_Graham, &sommet);
 		// Copie du point suivant du somment de la pile (pA)

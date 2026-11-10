@@ -38,8 +38,8 @@ double prod_vectoriel(t_point* p_ref, t_point* pA, t_point* pB) {
 //
 // cette condition sert a savoir si l'angle est ± grand que 90° car le sinus est le meme a x et -x
 double coord_polaire(t_point* pA, t_point* pB, t_point* h_ref) {
-	return (prod_vectoriel(h_ref, pA, pB) > 0) ?
-		asin((pB->posy - pA->posy) / distance(pA, pB)) :
+	return (prod_vectoriel(pA,h_ref,pB) > 0) ?
+		asin((double)(pB->posy - pA->posy) / distance(pA, pB)) :
 		(PI - asin((pB->posy - pA->posy) / distance(pA, pB)));
 }
 
@@ -136,7 +136,7 @@ void trier_pts(t_point tab_pts[], int taille) {
 				min = j;
 			/*Si les angles sont égaux*/
 			else if (tab_pts[j].rad == tab_pts[min].rad) {
-				if (tab_pts[j].dist < tab_pts[min].dist)
+				if (tab_pts[j].dist > tab_pts[min].dist)
 					min = j;
 			}
 		}
