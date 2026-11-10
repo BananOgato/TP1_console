@@ -140,6 +140,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="affichage.cpp" />
+    <ClCompile Include="graham.cpp" />
     <ClCompile Include="tab_affichage.cpp" />
     <ClCompile Include="tab_pile.cpp" />
     <ClCompile Include="tab_points.cpp" />
@@ -148,6 +149,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="affichage.h" />
+    <ClInclude Include="graham.h" />
     <ClInclude Include="tab_affichage.h" />
     <ClInclude Include="tab_pile.h" />
     <ClInclude Include="tab_points.h" />

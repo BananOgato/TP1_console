@@ -7,23 +7,20 @@
 #include "tab_points.h"
 
 /* ======== ========== ========== ========== ========== ========== ========== ========== =======  /
- * CONSTANTES
- * ======== ========== ========== ========== ========== ========== ========== ========== ======= */
-
-/* ======== ========== ========== ========== ========== ========== ========== ========== =======  /
  * DEFINITIONS types
  * ======== ========== ========== ========== ========== ========== ========== ========== ======= */
 
+// le type de l'elements qui constitura la pile
 typedef t_point t_element;
 
 /* ======== ========== ========== ========== ========== ========== ========== ========== =======  /
- * DEFINITIONS Structure
+ * DEFINITIONS STRUCTURES
  * ======== ========== ========== ========== ========== ========== ========== ========== ======= */
 
 typedef struct {
-	t_element* items;
-	int sommet;
-	int max;
+	t_element* items; // l'item de la pile (ex: une assiette)
+	int sommet;		  // l'item le plus au dessus de la pile (ex: l'assiette la plus au dessus)
+	int max;		  // la taille max de la pile (ex: hauteur max du meuble ou sont les assiettes)
 } t_pile;
 
 /* ======== ========== ========== ========== ========== ========== ========== ========== =======  /
@@ -60,10 +57,10 @@ int get_sommet(const t_pile* pile, t_element* element);
 int get_suiv_sommet(const t_pile* pile, t_element* element);
 
 /// <summary>
-/// Permet d'obtenir la taille de la pile pile
+/// Permet d'obtenir le nombre d'elements de la pile pile
 /// </summary>
 /// <param name="pile">la pile a tester</param>
-/// <returns>la taille de la pile</returns>
+/// <returns>le nombre d'elements de la pile pile</returns>
 int get_pile_size(const t_pile* pile);
 
 /// <summary>
@@ -85,16 +82,10 @@ int vide(const t_pile* pile);
 /// </summary>
 /// <param name="pile">la pile dans lequel sera ajouter l'element</param>
 /// <param name="item"> l'element qui sera ajouté a la pile</param>
-void push(t_pile* pile, t_element item);
+void ajouter_a_pile(t_pile* pile, t_element item);
 
 /// <summary>
 /// Pemet de supprimer l'element au sommet de la pile
 /// </summary>
 /// <param name="pile">la pile ou sera enlevé son sommet</param>
-void pop(t_pile* pile);
-
-/// <summary>
-/// Pemet de supprimer l'element en dessous du sommet de la pile
-/// </summary>
-/// <param name="pile">la pile ou sera enlevé son sommet</param>
-/// void pop_suiv(t_pile* pile);
+void enlever_a_pile(t_pile* pile);

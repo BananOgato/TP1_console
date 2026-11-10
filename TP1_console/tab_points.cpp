@@ -4,18 +4,17 @@
  * FONCTIONS
  * ======== ========== ========== ========== ========== ========== ========== ========== ======= */
 
-/// <summary>
-/// 
-/// </summary>
-/// <param name="pA"></param>
-/// <param name="pB"></param>
-/// <returns></returns>
+// DISTANCE :
+// fais la racine carré de la somme des difference X et Y au carré (la norme du vecteur AB)
 double distance(t_point* pA, t_point* pB) {
 	return sqrt(CARRE(pA->posx - pB->posx) + CARRE(pA->posy - pB->posy));
 }
 
 /* ======== ========== ========== ========== ========== ========== ========== ========== ======= */
 
+// PROD_VECTORIEL :
+//   le produit vectoriel ~ AxB
+//   (Ax - Rx) * (By - Ry)  -  (Ay - Ry) * (Bx - Rx) 
 double prod_vectoriel(t_point* p_ref, t_point* pA, t_point* pB) {
 	return (pA->posx - p_ref->posx) * (pB->posy - p_ref->posy)
 		   - (pA->posy - p_ref->posy) * (pB->posx - p_ref->posx);
@@ -25,11 +24,12 @@ double prod_vectoriel(t_point* p_ref, t_point* pA, t_point* pB) {
 
 // COORD_POLAIRE :
 // SI xB > xA
-//	 alors retourner l'angle grace a l'arcsin
-//   sinon retourner l'angle grace a l'arcsin avec pi/2 
+//	 retourner l'angle grace a l'arcsin
+// SINON
+//   retourner PI - l'angle grace a l'arcsin
 //
 // cette condition sert a savoir si l'angle est ± grand que 90° car le sinus est le meme a x et -x
-double coord_polaire(t_point* pA, t_point* pB, t_point* h_ref) { // QUESTION AU PROFF CAR PAS CLAIR
+double coord_polaire(t_point* pA, t_point* pB, t_point* h_ref) {
 	return (prod_vectoriel(h_ref, pA, pB) > 0) ?
 		asin((pB->posy - pA->posy) / distance(pA, pB)) :
 		(PI - asin((pB->posy - pA->posy) / distance(pA, pB)));
@@ -134,6 +134,10 @@ void trier_pts(t_point tab_pts[], int taille) {
 
 /* ======== ========== ========== ========== ========== ========== ========== ========== ======= */
 
+// CALCUL_COORD_POLAIRES :
+// Pour tout les point i du tableau
+//	 Ajouter dans la composante rad du point: la coordonnée polaire du point i en fonction du point 0
+//	 Ajouter dans la composante dist du point: la distance entre le point i et le point 0
 void calcul_coord_polaires(t_point tab_pts[], int taille, t_point* ref) {
 	for (int i = 1; i < taille; i++) {
 		tab_pts[i].rad = coord_polaire(&tab_pts[0], &tab_pts[i], ref);
