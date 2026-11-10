@@ -8,7 +8,7 @@
  * - Appliquer l'algorithme a un fichier de point predefinis
  * - Faire la moyenne sur un nombre de points de l’enveloppe
  * 
- * Le github associer: https://github.com/BananOgato/TP1_console/commits/Graham_/
+ * Le github associer: https://github.com/BananOgato/TP1_console
  * ======== ========== ========== ========== ========== ========== ========== ========== ======= */
 
 #define _CRT_SECURE_NO_WARNINGS
@@ -79,15 +79,17 @@ int main() {
 	trier_pts(tab_pts, nb_pts);
 
 	// afficher points trier dans le terminal
-	for (int i = 0; i < nb_pts; i++) {
+	/*for (int i = 0; i < nb_pts; i++) {
 		printf("%d:    %d ; %d ; dist: %lf ; angle %lf\n", i, tab_pts[i].posx, tab_pts[i].posy, 
 			  (i) ? tab_pts[i].dist : 0, (i) ? tab_pts[i].rad : 0);
-	}
+	}*/
 	
 	// affichage des points
 	mode_graphique();
 	afficher_pts_en_ordre(tab_pts, nb_pts);
+	afficher_ligne_vers_0(tab_pts, nb_pts);
 	pause_ecran();
+	effacer_ligne_vers_0(tab_pts, nb_pts);
 
 	/* ==== ========== ========== ========== ========== ========== ========== ========== ======= */
 	// ALGO GRAHAM
@@ -95,7 +97,7 @@ int main() {
 	t_pile pile;
 
 	// algoritme graham
-	algo_Graham_scan(tab_pts, nb_pts, &pile);
+	algo_Graham_scan(tab_pts, nb_pts, &pile, 1);
 
 	//Fermeture de la fenêtre graphique
 	fermer_mode_graph();
