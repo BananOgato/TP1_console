@@ -1,3 +1,16 @@
+/* ======== ========== ========== ========== ========== ========== ========== ========== ======== /
+ * Par : LABRE Paul
+ * Date : 2 nov 2026
+ *
+ * Librarie de gestion pour une pile.
+ * le nouveau type t_pile qui permet de creer une pile avec init_pile(int taille);
+ *
+ * les principales fonction sont implementé comme:
+ * ajouter_a_pile(t_pile* pile, t_element item);
+ * enlever_a_pile(t_pile* pile);
+ * liberer_pile(t_pile* pile);
+ * ======== ========== ========== ========== ========== ========== ========== ========== ======= */
+
 #include "tab_pile.h"
 
 /* ======== ========== ========== ========== ========== ========== ========== ========== =======  /
