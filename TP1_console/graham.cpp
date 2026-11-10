@@ -26,13 +26,13 @@ int algo_Graham_scan(t_point tab_pts[], int nb_pts, t_pile* pile_Graham, int aff
 			pile_Graham->items[0].posx, pile_Graham->items[0].posy,
 			pile_Graham->items[1].posx, pile_Graham->items[1].posy
 		);
+		delai_ecran(DELAIS_ECRANS);
 
 		dessiner_lig(
 			//Pour p1 vers p2
 			pile_Graham->items[1].posx, pile_Graham->items[1].posy,
 			pile_Graham->items[2].posx, pile_Graham->items[2].posy
 		);
-
 		delai_ecran(DELAIS_ECRANS);
 	}
 
@@ -52,7 +52,7 @@ int algo_Graham_scan(t_point tab_pts[], int nb_pts, t_pile* pile_Graham, int aff
 		}
 
 		// Segment Sommet-Second-Suivant est un virage vers la droite
-		while (prod_vectoriel(&sommet, &second, &tab_pts[i]) > 0) {
+		while (prod_vectoriel(&second, &sommet, &tab_pts[i]) >= 0) {
 			// Dépile pB de la pile
 			if (affichage) {
 				effacer_lig(second.posx, second.posy, sommet.posx, sommet.posy);
