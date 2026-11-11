@@ -33,10 +33,10 @@
  * au carré (la norme du vecteur AB).
  * 
  * Paramètres: 
- *  -pA: point A
- *  -pB: point B
- * Valeur de retour: 
- 
+ *  -pA:  Le premier point A (type: t_point*)
+ *  -pB: Le deuxième point B (type: t_point*)
+ * Valeur de retour: La distance entre les deux points
+ * 
  * ======== ========== ========== ========== ========== ========== ========== ========== */
 
 double distance(t_point* pA, t_point* pB) {
