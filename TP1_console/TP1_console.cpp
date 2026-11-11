@@ -34,12 +34,17 @@ int main() {
 	/* ==== ========== ========== ========== ========== ========== ========== ========== ======= */
 	// INITIALISATION
 
-	// Variables
+	// Tableau dynamique contenant les points à traiter
 	t_point* tab_pts = NULL;
+	// Point de référence horizontal utilisé pour calculer les angles
 	t_point h_ref;
+	// Position du point minimal dans le tableau
 	int pos_pt_min;
+	// Mode d'exécution choisi par l'utilisateur
 	int mode = 0;
+	// Nombre de points chargés ou générés
 	int nb_pts = 0;
+	// Fichier contenant les points lorsque le mode fichier est utilisé
 	FILE* fichier = NULL;
 
 	// initialise le générateur "rand()"
@@ -64,6 +69,7 @@ int main() {
 		break;
 
 	case 3: 
+		// Fichier dans lequel les moyennes des simulations seront enregistrées
 		FILE* log = fopen("moyennes.txt", "w");
 		if (log == NULL) {
 			printf("Erreur: creation du fichier-log impossible\n");
@@ -71,7 +77,9 @@ int main() {
 		}
 
 		printf("Simulation en cours | %d tests par moyenne :\n", NB_TESTS);
+		// Nombre de points utilisé pour la série de simulations courante.
 		for (int n = NB_PTS_MIN; n <= NB_PTS_MAX; n += NB_PTS_PAS) {
+			// Moyenne du nombre de sommets de l'enveloppe convexe.
 			double moyenne = simulation_moyenne(n, NB_TESTS);
 			fprintf(log, "%d\t%f\n", n, moyenne);
 			printf("%d points -> moyenne : %.2f\n", n, moyenne);
@@ -104,6 +112,7 @@ int main() {
 	/* ==== ========== ========== ========== ========== ========== ========== ========== ======= */
 	// ALGO GRAHAM
 
+	// Pile contenant l'enveloppe calculée par Graham
 	t_pile pile;
 
 	// algoritme graham (avec affichage)
