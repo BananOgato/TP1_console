@@ -28,12 +28,7 @@ int algo_Graham_scan(t_point tab_pts[], int nb_pts, t_pile* pile_Graham, int aff
 		);
 		delai_ecran(DELAIS_ECRANS);
 
-		dessiner_lig(
-			//Pour p1 vers p2
-			pile_Graham->items[1].posx, pile_Graham->items[1].posy,
-			pile_Graham->items[2].posx, pile_Graham->items[2].posy
-		);
-		delai_ecran(DELAIS_ECRANS);
+		
 	}
 
 	// Initialisation point sommet et le point second (sommet - 1)
