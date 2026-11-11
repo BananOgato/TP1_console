@@ -1,9 +1,16 @@
-/* ======== ========== ========== ========== ========== ========== ========== ========== ======== /
- * Par : MUC Briana
- * Date : 10 nov 2026
+/* ======== ========== ========== ========== ========== ========== ========== ========== *
+ * Par : MUCCIARONE Briana 
+ * Date : 04 nov 2026
  *
- * DESCIRPTION
- * ======== ========== ========== ========== ========== ========== ========== ========== ======= */
+ * Cette libraries permet de gerer les interaction entre l'utilisateur et les fichiers.
+ * On y retrouve les fonctions suivantes:
+ * - demander_mode: Cette fonction demande et renvoie le choix du mode
+ *					d'exécution de l'utilisateur.
+ * - choisir_fichier: Cette fonction permet de sélectionner et d'ouvrir un fichier texte
+ *					  de points.
+ * - lire_points: Cette fonction lit le nombre de points depuis un fichier pour allouer
+ *				  et remplir un tableau dynamique.				  
+ * ======== ========== ========== ========== ========== ========== ========== ========== */
 
 #include "interactions.h"
 
@@ -11,6 +18,17 @@
  /*                              DEFINITIONS DE FONCTIONS								 */
  /* ======== ========== ========== ========== ========== ========== ========== ========== */
 
+/* ======== ========== ========== ========== ========== ========== ========== ========== *
+ * DEMANDER_MODE
+ * Codé par Briana
+ * Cette fonction affiche un menu et demande à l'utilisateur de choisir le mode
+ * d'exécution du programme
+ *
+ * Paramètres:
+ *  - Aucun
+ *
+ * Valeur de retour: Un entier qui représente le mode choisie (type: int)
+ * ======== ========== ========== ========== ========== ========== ========== ========== */
  //Fonction qui demande le mode voulu (Avec aide de TRIGONO.cpp du cours 04)
 int demander_mode(void) {
 	//Variables pour le choix de l'utilisateur
@@ -44,7 +62,17 @@ int demander_mode(void) {
 	}
 }
 
-/* ======== ========== ========== ========== ========== ========== ========== ========== */
+/* ======== ========== ========== ========== ========== ========== ========== ========== *
+ * CHOISIR_FICHIER
+ * Codé par Briana
+ * Cette fonction demande le nom d'un fichier et redemande en boucle jusqu'a
+ * l'ouverture du fichier.
+ *
+ * Paramètres:
+ *  -Aucun
+ *
+ * Valeur de retour: Le pointeur vers le fichier ouvert (type: FILE*)
+ * ======== ========== ========== ========== ========== ========== ========== ========== */
 
 //Fonction qui permet de sélectionner un des fichiers points
 FILE* choisir_fichier(void) {
@@ -71,7 +99,19 @@ FILE* choisir_fichier(void) {
 	return fichier;
 }
 
-/* ======== ========== ========== ========== ========== ========== ========== ========== */
+/* ======== ========== ========== ========== ========== ========== ========== ========== *
+ * LIRE_POINTS
+ * Codé par Briana
+ * Cette fonction lit le nombre de points depuis un fichier pour allouer
+ * et remplir un tableau dynamique .
+ *
+ * Paramètres:
+ *  -fichier: Le pointeur vers le fichier contenant les points (type: FILE*)
+ *  -nb_pts: Le pointeur vers un entier pour stocker le nombre total de
+ 8           points (type: int)
+ *
+ * Valeur de retour: Le pointeur vers le tableau dynamique de points alloué (type: t_points*)
+ * ======== ========== ========== ========== ========== ========== ========== ========== */
 
 //Fonction qui lit et assigne les points du fichier dans le tableau dynamique
 t_point* lire_points(FILE* fichier, int* nb_pts) {
