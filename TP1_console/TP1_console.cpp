@@ -110,7 +110,4 @@ int main() {
 	return EXIT_SUCCESS;
 }
 
-//3e mandat
-double simulation_moyenne(int nb_pts, int nb_tests) {
-
-}
+//TEST 
