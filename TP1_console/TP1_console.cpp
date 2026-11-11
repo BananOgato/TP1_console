@@ -13,9 +13,9 @@
 
 #define _CRT_SECURE_NO_WARNINGS
 
-/* ======== ========== ========== ========== ========== ========== ========== ========== */
-/*										 LIBRARIES										 */
-/* ======== ========== ========== ========== ========== ========== ========== ========== */
+ /* ======== ========== ========== ========== ========== ========== ========== ========== */
+ /*										 LIBRARIES										 */
+ /* ======== ========== ========== ========== ========== ========== ========== ========== */
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -26,51 +26,62 @@
 #include "graham.h"
 #include "interactions.h"
 
-  /* ======== ========== ========== ========== ========== ========== ========== ========== =======  /
-   * MAIN
-   * ======== ========== ========== ========== ========== ========== ========== ========== ======= */
+/* ======== ========== ========== ========== ========== ========== ========== ========== =======  /
+ * MAIN
+ * ======== ========== ========== ========== ========== ========== ========== ========== ======= */
 
 int main() {
 	/* ==== ========== ========== ========== ========== ========== ========== ========== ======= */
-	// INITIALISATION 
+	// INITIALISATION
 
-	//Variables
+	// Variables
 	t_point* tab_pts = NULL;
 	t_point h_ref;
 	int pos_pt_min;
-
-	// Allocation dynamique avec malloc
-	tab_pts = (t_point*)malloc(TAILLE * sizeof(t_point));
-	if (tab_pts == NULL)
-		printf("ERREUR d'allocation de mémoire de tab_pts");
-
 	int mode = 0;
 	int nb_pts = 0;
-
-	// initialise le générateur "rand()"
-	srand(time(NULL));
-
-	//Demande du mode à l'utilisateur
-	mode = demander_mode();
-
 	FILE* fichier = NULL;
 
+	// initialise le générateur "rand()"
+	srand((unsigned int)time(NULL));
+
+	// Demande du mode à l'utilisateur
+	mode = demander_mode();
+
 	switch (mode) {
-	case 1: //Pour le mode aléatoire
+	case 1: // Pour le mode aléatoire
 		nb_pts = TAILLE;
-		//Allocation dynamique avec malloc
+		// Allocation dynamique avec malloc
 		tab_pts = (t_point*)malloc(nb_pts * sizeof(t_point));
-		//Validation de l'allocation
+		// Validation de l'allocation
 		assert(tab_pts != NULL);
 		init_tab_alea(tab_pts, nb_pts, MAX_X, MAX_Y);
 		break;
-	case 2: //Pour le mode fichier
+
+	case 2: // Pour le mode fichier
 		fichier = choisir_fichier();
 		tab_pts = lire_points(fichier, &nb_pts);
 		break;
-	case 3:
-		printf("simulation moyenne");
-		break;
+
+	case 3: 
+		FILE* log = fopen("moyennes.txt", "w");
+		if (log == NULL) {
+			printf("Erreur: creation du fichier-log impossible\n");
+			return EXIT_FAILURE;
+		}
+
+		printf("Simulation en cours | %d tests par moyenne :\n", NB_TESTS);
+		for (int n = NB_PTS_MIN; n <= NB_PTS_MAX; n += NB_PTS_PAS) {
+			double moyenne = simulation_moyenne(n, NB_TESTS);
+			fprintf(log, "%d\t%f\n", n, moyenne);
+			printf("%3d points -> moyenne : %.2f\n", n, moyenne);
+		}
+
+		fclose(log);
+		printf("Fichier %s genere.\n", "moyennes.txt");
+
+		// Pas de partie graphique pour ce mode
+		return EXIT_SUCCESS;
 	}
 
 	/* ==== ========== ========== ========== ========== ========== ========== ========== ======= */
@@ -95,16 +106,17 @@ int main() {
 
 	t_pile pile;
 
-	// algoritme graham
+	// algoritme graham (avec affichage)
 	algo_Graham_scan(tab_pts, nb_pts, &pile, 1);
 
-	//Fermeture de la fenêtre graphique
+	// Fermeture de la fenêtre graphique
 	nettoyer_ecran();
 	fermer_mode_graph();
 
 	/* ======== ========== ========== ========== ========== ========== ========== ========== ======= */
 	// LIBERATION MEMOIRE | FIN
 
+	liberer_pile(&pile);
 	free(tab_pts);
 
 	return EXIT_SUCCESS;
