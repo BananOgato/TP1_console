@@ -74,7 +74,7 @@ int main() {
 		for (int n = NB_PTS_MIN; n <= NB_PTS_MAX; n += NB_PTS_PAS) {
 			double moyenne = simulation_moyenne(n, NB_TESTS);
 			fprintf(log, "%d\t%f\n", n, moyenne);
-			printf("%3d points -> moyenne : %.2f\n", n, moyenne);
+			printf("%d points -> moyenne : %.2f\n", n, moyenne);
 		}
 
 		fclose(log);
