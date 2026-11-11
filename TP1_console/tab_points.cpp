@@ -29,33 +29,47 @@
 /* ======== ========== ========== ========== ========== ========== ========== ========== *
  * DISTANCE 
  * Codé par Paul
- * Cette fonction fais la racine carré de la somme des difference X et Y 
- * au carré (la norme du vecteur AB).
+ * Cette fonction calcule la distance eucledienne de deux points.
  * 
  * Paramètres: 
- *  -pA:  Le premier point A (type: t_point*)
+ *  -pA: Le premier point A (type: t_point*)
  *  -pB: Le deuxième point B (type: t_point*)
- * Valeur de retour: La distance entre les deux points
- * 
+ * Valeur de retour: La distance entre pA et pB (type: double)
  * ======== ========== ========== ========== ========== ========== ========== ========== */
 
 double distance(t_point* pA, t_point* pB) {
 	return sqrt(CARRE(pA->posx - pB->posx) + CARRE(pA->posy - pB->posy));
 }
 
-/* ======== ========== ========== ========== ========== ========== ========== ========== ======= */
-
-// PROD_VECTORIEL : (Par Paul)
-//   le produit vectoriel ~ AxB
-//   (Ax - Rx) * (By - Ry)  -  (Ay - Ry) * (Bx - Rx) 
+/* ======== ========== ========== ========== ========== ========== ========== ========== *
+ * PROD_VECTORIEL
+ * Codé par Paul
+ * Cette fonction calcule le produit vectoriel de deux vecteurs formés par 
+ * 3 points (h_ref, pA, pB)
+ *
+ * Paramètres:
+ *  -p_ref: Le point de référence (type: t_point*)
+ *  -pA: Le premier point A (type: t_point*)
+ *  -pB: Le deuxième point B (type: t_point*)
+ * Valeur de retour: Le résultat du produit vectoriel (type: double)
+ * ======== ========== ========== ========== ========== ========== ========== ========== */
 double prod_vectoriel(t_point* p_ref, t_point* pA, t_point* pB) {
 	return (pA->posx - p_ref->posx) * (pB->posy - p_ref->posy)
 		- (pA->posy - p_ref->posy) * (pB->posx - p_ref->posx);
 }
 
-/* ======== ========== ========== ========== ========== ========== ========== ========== ======= */
-
-// COORD_POLAIRE : (Par Paul)
+/* ======== ========== ========== ========== ========== ========== ========== ========== *
+ * COORD_POLAIRE
+ * Codé par Paul
+ * Cette fonction calcule l'angle polaire d'un point par rapport a une origine
+ *
+ * Paramètres:
+ *  -pA: Le point de départ (type: t_point*)
+ *  -pB: Le point d'arriver (type: t_point*)
+ *  -p_ref: Le point de référence (type: t_point*)
+ * 
+ * Valeur de retour: L'angle polaire en radians (type: double)
+ * ======== ========== ========== ========== ========== ========== ========== ========== */
 // SI xB > xA
 //	 retourner l'angle grace a l'arcsin
 // SINON
@@ -68,16 +82,34 @@ double coord_polaire(t_point* pA, t_point* pB, t_point* h_ref) {
 		(PI - asin((pB->posy - pA->posy) / distance(pA, pB)));
 }
 
-/* ======== ========== ========== ========== ========== ========== ========== ========== ======= */
-
-// (par Briana)
+/* ======== ========== ========== ========== ========== ========== ========== ========== *
+ * ALEA
+ * Codé par Briana
+ * Cette fonction renvoie un nombre entier aléatoire dans l'intervalle [min, max].
+ *
+ * Paramètres:
+ *  -min: La borne inférieur de l'intervalle (type: int)
+ *  -max: La borne supérieur de l'intervalle (type: int)
+ *
+ * Valeur de retour: Entier aléatoire inclue dans l'intervalle [min, max] (type: int)
+ * ======== ========== ========== ========== ========== ========== ========== ========== */
 int alea(int min, int max) {	// retourne un entier aléatoire dans [min, max]
 	return (rand() % (max - min + 1) + min);
 }
 
-/* ======== ========== ========== ========== ========== ========== ========== ========== ======= */
-
-// (par Briana)
+/* ======== ========== ========== ========== ========== ========== ========== ========== *
+ * INIT_TAB_ALEA
+ * Codé par Briana
+ * Cette fonction initialise un tableau de points avec des coordonées (x,y) aléatoires
+ *
+ * Paramètres:
+ *  -tab_pts: Le tableau de point à initialiser (type: t_point*)
+ *  -taille: Le nombre de points dans le tableau (type: int)
+ *  -maxx: La valeur maximale pour la coordonnée en x (type: int)
+ *  -maxy: La valeur maximale pour la coordonnée en y (type: int)
+ *
+ * Valeur de retour: Aucune
+ * ======== ========== ========== ========== ========== ========== ========== ========== */
 void init_tab_alea(t_point tab_pts[], int taille, int maxx, int maxy) {
 	//randomize les points dans le tableau pour les x
 	for (int i = 0;i < taille;i++) {
@@ -98,15 +130,21 @@ void init_tab_alea(t_point tab_pts[], int taille, int maxx, int maxy) {
 	}
 }
 
-/* ======== ========== ========== ========== ========== ========== ========== ========== ======= */
-
-// TROUVER_PT_MINIMAL : (Par Paul)
+/* ======== ========== ========== ========== ========== ========== ========== ========== *
+ * TROUVER_PT_MINIMAL
+ * Codé par Paul
+ * Cette fonction trouve l'indice du point le plus en bas dans le tableau de points
+ * 
+ * Paramètres:
+ *  -tab_pts: Le tableau de point à analyser (type: const t_point[])
+ *  -taille: Le nombre de points dans le tableau (type: int)
+ *
+ * Valeur de retour: L'indice du point minimal dans le tableau (type: int)
+ * ======== ========== ========== ========== ========== ========== ========== ========== */
 // on retiens dans tab_index la position du tableau
 // en parcours toutes les cases du tableau et on retiens la position si
 //	 la position Y de la case pos est plus petite que tab_index
 //	 OU SI la position Y est egale ET que la position X est plus petite
-// 
-// Retourne tab_index
 int trouver_pt_minimal(const t_point tab_pts[], int taille) {
 	// l'indice du point le plus en bas a droite du graphique
 	int tab_index = 0;
@@ -121,9 +159,18 @@ int trouver_pt_minimal(const t_point tab_pts[], int taille) {
 	return tab_index;
 }
 
-/* ======== ========== ========== ========== ========== ========== ========== ========== ======= */
-
-// (par Briana)
+/* ======== ========== ========== ========== ========== ========== ========== ========== *
+ * SWAP
+ * Codé par Briana
+ * Cette fonction permute deux points d'un tableau
+ *
+ * Paramètres:
+ *  -tab_pts: Le tableau de point ayant les points (type: t_point[])
+ *  -a: L'indice du premier point à échanger (type: int)
+ *  -b: L'indice du deuxième point à échanger (type: int)
+ *
+ * Valeur de retour: Aucune
+ * ======== ========== ========== ========== ========== ========== ========== ========== */
 void swap(t_point tab_pts[], int a, int b) {
 	t_point temp = tab_pts[a]; /*Temporaire pour variable a*/
 	/*Permutation des variables*/
@@ -131,9 +178,18 @@ void swap(t_point tab_pts[], int a, int b) {
 	tab_pts[b] = temp;
 }
 
-/* ======== ========== ========== ========== ========== ========== ========== ========== ======= */
-
-// (par Briana)
+/* ======== ========== ========== ========== ========== ========== ========== ========== *
+ * PLACER_PT_REFERENCE
+ * Codé par Briana
+ * Cette fonction crée le point de référence horizontale qui sert au calcul
+ * des angles polaires
+ *
+ * Paramètres:
+ *  -tab_pts: Le tableau de point ayant les points (type: t_point[])
+ *  -pos_min: L'indice du point minimal dans le tableau (type: int)
+ *
+ * Valeur de retour: Le point de référence horizontale crée (type: t_point)
+ * ======== ========== ========== ========== ========== ========== ========== ========== */
 t_point placer_pt_reference(t_point tab_pts[], int pos_min) {
 	/*
 	pos_min = trouver_pt_minimal(tab_pts, TAILLE);	Indice du point minimal*/
@@ -148,9 +204,18 @@ t_point placer_pt_reference(t_point tab_pts[], int pos_min) {
 	return pt_ref;
 }
 
-/* ======== ========== ========== ========== ========== ========== ========== ========== ======= */
-
-// (par Briana)
+/* ======== ========== ========== ========== ========== ========== ========== ========== *
+ * TRIER_PTS
+ * Codé par Briana
+ * Cette fonction trie les points du tableau par ordre croissant de leurs
+ * angles polaire en utilisant le tri par sélection.
+ *
+ * Paramètres:
+ *  -tab_pts: Le tableau de point à trier (type: t_point[])
+ *  -taille: Le nombre de points dans le tableau (type: int)
+ *
+ * Valeur de retour: Aucune
+ * ======== ========== ========== ========== ========== ========== ========== ========== */
 void trier_pts(t_point tab_pts[], int taille) {
 	/*Triage des points par sélection*/
 	for (int i = 1;i < taille - 1;i++) {		//Point min reste dans tab_pts[0]
@@ -171,9 +236,19 @@ void trier_pts(t_point tab_pts[], int taille) {
 	}
 }
 
-/* ======== ========== ========== ========== ========== ========== ========== ========== ======= */
-
-// CALCUL_COORD_POLAIRES : (Par Paul)
+/* ======== ========== ========== ========== ========== ========== ========== ========== *
+ * CALCUL_COORD_POLAIRES
+ * Codé par Paul
+ * Cette fonction calcul l'angle polaire et la distance par rapport au point
+ * de référence.
+ *
+ * Paramètres:
+ *  -tab_pts: Le tableau de point (type: t_point[])
+ *  -taille: Le nombre de points dans le tableau (type: int)
+ *  -ref: Le point de référence horizontale (type: t_point*)
+ *
+ * Valeur de retour: Aucune
+ * ======== ========== ========== ========== ========== ========== ========== ========== */
 // Pour tout les point i du tableau
 //	 Ajouter dans la composante rad du point: la coordonnée polaire du point i en fonction du point 0
 //	 Ajouter dans la composante dist du point: la distance entre le point i et le point 0
