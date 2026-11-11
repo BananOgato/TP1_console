@@ -62,7 +62,8 @@ int algo_Graham_scan(t_point tab_pts[], int nb_pts, t_pile* pile_Graham, int aff
 	if (affichage) {
 		dessiner_lig(second.posx, second.posy, sommet.posx, sommet.posy);
 		delai_ecran(DELAIS_ECRANS);
-		dessiner_lig(sommet.posx, sommet.posy, pile_Graham->items[0].posx, pile_Graham->items[0].posy);
+		dessiner_lig(
+			sommet.posx, sommet.posy, pile_Graham->items[0].posx, pile_Graham->items[0].posy);
 	}
 
 	if (affichage) {
@@ -75,4 +76,47 @@ int algo_Graham_scan(t_point tab_pts[], int nb_pts, t_pile* pile_Graham, int aff
 	}
 
 	return pile_Graham->sommet + 1;
+}
+
+/* ======== ========== ========== ========== ========== ========== ========== ========== ======= */
+
+// SIMULATION_MOYENNE
+// Effectue nb_tests parcours de Graham sur nb_pts points aleatoires, SANS affichage.
+// Retourne la moyenne du nombre de points de l'enveloppe convexe.
+double simulation_moyenne(int nb_pts, int nb_tests) {
+	t_pile pile_Graham;			// la pile-solution de l'enveloppe
+	t_point* tab_pts = NULL;	// le tableau dynamique des points
+	t_point h_ref = { 0 };		// le point de référence horizontal
+	int p_min;					// la position du point-minimal p0
+	int nb_pts_tot = 0;			// le nb. total de points-enveloppe
+
+	// Allocation du tableau dynamique + validation
+	tab_pts = (t_point*)malloc(nb_pts * sizeof(t_point));
+	if (tab_pts == NULL) {
+		printf("Erreur: allocation du tableau dynamique impossible\n");
+		return NULL;
+	}
+
+	for (int i = 0; i < nb_tests; i++) {
+		// Points aléatoires
+		init_tab_alea(tab_pts, nb_pts, MAX_X, MAX_Y);
+
+		// Point minimal en case [0] et point de référence
+		p_min = trouver_pt_minimal(tab_pts, nb_pts);
+		h_ref = placer_pt_reference(tab_pts, p_min);
+
+		// Angles polaires puis tri
+		calcul_coord_polaires(tab_pts, nb_pts, &h_ref);
+		trier_pts(tab_pts, nb_pts);
+
+		// Enveloppe convexe, sans affichage (mode_aff = 0)
+		nb_pts_tot += algo_Graham_scan(tab_pts, nb_pts, &pile_Graham, 0);
+
+		// Libération de la pile-solution
+		liberer_pile(&pile_Graham);
+	}
+
+	free(tab_pts);
+
+	return (double)nb_pts_tot / nb_tests;
 }
