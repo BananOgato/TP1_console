@@ -8,12 +8,12 @@
 
 #include "tab_points.h"
 
-/* ======== ========== ========== ========== ========== ========== ========== ========== =======  /
- * FONCTIONS
- * ======== ========== ========== ========== ========== ========== ========== ========== ======= */
+ /* ======== ========== ========== ========== ========== ========== ========== ========== =======  /
+  * FONCTIONS
+  * ======== ========== ========== ========== ========== ========== ========== ========== ======= */
 
-// DISTANCE : (Par Paul)
-// fais la racine carré de la somme des difference X et Y au carré (la norme du vecteur AB)
+  // DISTANCE : (Par Paul)
+  // fais la racine carré de la somme des difference X et Y au carré (la norme du vecteur AB)
 double distance(t_point* pA, t_point* pB) {
 	return sqrt(CARRE(pA->posx - pB->posx) + CARRE(pA->posy - pB->posy));
 }
@@ -25,7 +25,7 @@ double distance(t_point* pA, t_point* pB) {
 //   (Ax - Rx) * (By - Ry)  -  (Ay - Ry) * (Bx - Rx) 
 double prod_vectoriel(t_point* p_ref, t_point* pA, t_point* pB) {
 	return (pA->posx - p_ref->posx) * (pB->posy - p_ref->posy)
-		   - (pA->posy - p_ref->posy) * (pB->posx - p_ref->posx);
+		- (pA->posy - p_ref->posy) * (pB->posx - p_ref->posx);
 }
 
 /* ======== ========== ========== ========== ========== ========== ========== ========== ======= */
@@ -38,8 +38,8 @@ double prod_vectoriel(t_point* p_ref, t_point* pA, t_point* pB) {
 //
 // cette condition sert a savoir si l'angle est ± grand que 90° car le sinus est le meme a x et -x
 double coord_polaire(t_point* pA, t_point* pB, t_point* h_ref) {
-	return (prod_vectoriel(pA,h_ref,pB) > 0) ?
-		asin((double)(pB->posy - pA->posy) / distance(pA, pB)) :
+	return (prod_vectoriel(h_ref, pA, pB) > 0) ?
+		asin((pB->posy - pA->posy) / distance(pA, pB)) :
 		(PI - asin((pB->posy - pA->posy) / distance(pA, pB)));
 }
 
@@ -88,8 +88,8 @@ int trouver_pt_minimal(const t_point tab_pts[], int taille) {
 
 	for (int pos = 1; pos < taille; pos++) {
 		if ((tab_pts[pos].posy < tab_pts[tab_index].posy) ||
-		   (tab_pts[pos].posy == tab_pts[tab_index].posy &&
-			tab_pts[pos].posx < tab_pts[tab_index].posx))
+			(tab_pts[pos].posy == tab_pts[tab_index].posy &&
+				tab_pts[pos].posx < tab_pts[tab_index].posx))
 			tab_index = pos;
 	}
 
@@ -136,7 +136,7 @@ void trier_pts(t_point tab_pts[], int taille) {
 				min = j;
 			/*Si les angles sont égaux*/
 			else if (tab_pts[j].rad == tab_pts[min].rad) {
-				if (tab_pts[j].dist > tab_pts[min].dist)
+				if (tab_pts[j].dist < tab_pts[min].dist)
 					min = j;
 			}
 		}

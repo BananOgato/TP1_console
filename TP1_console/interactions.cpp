@@ -7,11 +7,11 @@
 
 #include "interactions.h"
 
-/* ======== ========== ========== ========== ========== ========== ========== ========== */
-/*                              DEFINITIONS DE FONCTIONS								 */
-/* ======== ========== ========== ========== ========== ========== ========== ========== */
+ /* ======== ========== ========== ========== ========== ========== ========== ========== */
+ /*                              DEFINITIONS DE FONCTIONS								 */
+ /* ======== ========== ========== ========== ========== ========== ========== ========== */
 
-//Fonction qui demande le mode voulu (Avec aide de TRIGONO.cpp du cours 04)
+ //Fonction qui demande le mode voulu (Avec aide de TRIGONO.cpp du cours 04)
 int demander_mode(void) {
 	//Variables pour le choix de l'utilisateur
 	unsigned char choix;
@@ -21,18 +21,23 @@ int demander_mode(void) {
 	printf("\nChoisir un mode d'execution parmi les suivantes : \n");
 	printf(" 1) Mode aleatoire de 20 points\n");
 	printf(" 2) Mode a partir d'un fichier texte\n");
+	printf(" 3) Mode simulation de moyenne\n");
 	printf("/* =========== =========== =========== ===========*/\n");
 
 	//Capture du choix de l'utilisateur
 	do {
-		choix = _getche();       //saisir et valider le choix de l'utilisateur
-	} while ((choix > '2') || (choix < '1'));
+		printf("> ");
+		scanf("%c", &choix);
+		FFLUSH();
+	} while ((choix != '3') && (choix != '2') && (choix != '1'));
 
 	//Valeur de retour selon le choix de l'utilisateur
 	switch (choix) {
 	case '1': return 1;
 		break;
 	case '2': return 2;
+		break;
+	case '3': return 3;
 		break;
 	default:
 		return 0;
@@ -94,4 +99,40 @@ t_point* lire_points(FILE* fichier, int* nb_pts) {
 	//Retourne le pointeur du tableau dynamique
 	return tab_dyn;
 }
+
 /* ======== ========== ========== ========== ========== ========== ========== ========== */
+
+double simulation_moyenne(int nb_pts, int nb_tests) {
+	t_pile pile_Graham;          // la pile-solution de l'enveloppe
+	t_point* tab_pts = NULL;     // le tableau dynamique des points
+	t_point h_ref = { 0 };       // le point de référence horizontal
+	int p_min;                   // la position du point-minimal p0
+	int nb_pts_tot = 0;          // le nb. total de points-enveloppe
+
+	// Allocation du tableau dynamique et validation
+	tab_pts = (t_point*)malloc(nb_pts * sizeof(t_point));
+	assert(tab_pts != NULL);
+
+	for (int i = 0; i < nb_tests; i++) {
+		// Points aléatoires
+		init_tab_alea(tab_pts, nb_pts, MAX_X, MAX_Y);
+
+		// Point minimal -> case [0] + point de référence
+		p_min = trouver_pt_minimal(tab_pts, nb_pts);
+		h_ref = placer_pt_reference(tab_pts, p_min);
+
+		// Angles polaires puis tri
+		calcul_coord_polaires(tab_pts, nb_pts, &h_ref);
+		trier_pts(tab_pts, nb_pts);
+
+		// Graham SANS affichage (la fonction crée la pile avec init_pile)
+		nb_pts_tot += algo_Graham_scan(tab_pts, nb_pts, &pile_Graham, 0);
+
+		// Libérer la pile-solution
+		liberer_pile(&pile_Graham);
+	}
+
+	free(tab_pts);
+
+	return (double)nb_pts_tot / nb_tests;
+}

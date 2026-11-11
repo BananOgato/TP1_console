@@ -7,15 +7,15 @@
  * - Appliquer l'algorithme a 20 point repartis aleatoirement
  * - Appliquer l'algorithme a un fichier de point predefinis
  * - Faire la moyenne sur un nombre de points de l’enveloppe
- * 
+ *
  * Le github associer: https://github.com/BananOgato/TP1_console
  * ======== ========== ========== ========== ========== ========== ========== ========== ======= */
 
 #define _CRT_SECURE_NO_WARNINGS
 
-/* ======== ========== ========== ========== ========== ========== ========== ========== =======  /
- * LIBRARIES
- * ======== ========== ========== ========== ========== ========== ========== ========== ======= */
+ /* ======== ========== ========== ========== ========== ========== ========== ========== =======  /
+  * LIBRARIES
+  * ======== ========== ========== ========== ========== ========== ========== ========== ======= */
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -26,16 +26,16 @@
 #include "graham.h"
 #include "interactions.h"
 
-/* ======== ========== ========== ========== ========== ========== ========== ========== =======  /
- * MAIN
- * ======== ========== ========== ========== ========== ========== ========== ========== ======= */
+  /* ======== ========== ========== ========== ========== ========== ========== ========== =======  /
+   * MAIN
+   * ======== ========== ========== ========== ========== ========== ========== ========== ======= */
 
 int main() {
 	/* ==== ========== ========== ========== ========== ========== ========== ========== ======= */
 	// INITIALISATION 
 
 	//Variables
-	t_point *tab_pts = NULL;
+	t_point* tab_pts = NULL;
 	t_point h_ref;
 	int pos_pt_min;
 
@@ -53,6 +53,8 @@ int main() {
 	//Demande du mode à l'utilisateur
 	mode = demander_mode();
 
+	FILE* fichier = NULL;
+
 	switch (mode) {
 	case 1: //Pour le mode aléatoire
 		nb_pts = TAILLE;
@@ -63,8 +65,11 @@ int main() {
 		init_tab_alea(tab_pts, nb_pts, MAX_X, MAX_Y);
 		break;
 	case 2: //Pour le mode fichier
-		FILE * fichier = choisir_fichier();
+		fichier = choisir_fichier();
 		tab_pts = lire_points(fichier, &nb_pts);
+		break;
+	case 3:
+		printf("simulation moyenne");
 		break;
 	}
 
@@ -78,12 +83,6 @@ int main() {
 	calcul_coord_polaires(tab_pts, nb_pts, &h_ref);
 	trier_pts(tab_pts, nb_pts);
 
-	// afficher points trier dans le terminal
-	/*for (int i = 0; i < nb_pts; i++) {
-		printf("%d:    %d ; %d ; dist: %lf ; angle %lf\n", i, tab_pts[i].posx, tab_pts[i].posy, 
-			  (i) ? tab_pts[i].dist : 0, (i) ? tab_pts[i].rad : 0);
-	}*/
-	
 	// affichage des points
 	mode_graphique();
 	afficher_pts_en_ordre(tab_pts, nb_pts);
@@ -100,14 +99,13 @@ int main() {
 	algo_Graham_scan(tab_pts, nb_pts, &pile, 1);
 
 	//Fermeture de la fenêtre graphique
+	nettoyer_ecran();
 	fermer_mode_graph();
-	
+
 	/* ======== ========== ========== ========== ========== ========== ========== ========== ======= */
 	// LIBERATION MEMOIRE | FIN
-	
+
 	free(tab_pts);
 
 	return EXIT_SUCCESS;
 }
-
-//TEST 

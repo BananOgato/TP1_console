@@ -70,12 +70,12 @@ void delai_ecran(int msec) {
 //Dessine un petit point à la position-écran (x, y) avec le "no" affiché à coté
 //NOTE: la coordonnée "y" sera inverséé (avec la position 0 au BAS de l'écran)
 void dessiner_pt(int x, int y, int no) {
-    char val[5] = { 0 };     //string pour la conversion de "no" en caractères
+	char val[5] = { 0 };     //string pour la conversion de "no" en caractères
 
-    setcolor(WHITE);
-    circle(x, INV_Y(y), 2);  //avec coord. y inversée et un rayon de 2 pixels
-    _itoa(no, val, 10);      //conversion base 10 de "no" dans la string "val"
-    outtextxy(x + 1, INV_Y(y) + 1, val);      //avec coord. y inversée
+	setcolor(WHITE);
+	circle(x, INV_Y(y), 2);  //avec coord. y inversée et un rayon de 2 pixels
+	_itoa(no, val, 10);      //conversion base 10 de "no" dans la string "val"
+	outtextxy(x + 1, INV_Y(y) + 1, val);      //avec coord. y inversée
 }
 
 /********************************************************************/

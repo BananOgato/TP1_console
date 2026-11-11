@@ -33,7 +33,7 @@ void delai_ecran(int msec);
 
 //Permet de faire une pause-écran (jusqu'à une touche soit pesée).
 //Un message de pause-écran sera affiché au bas de l'écran.
-void pause_ecran(void); 
+void pause_ecran(void);
 
 //Dessine un petit point à la position-écran (x, y) avec le "no" affiché à coté.
 //NOTE: la coordonnée "y" sera inverséé (avec la position 0 au BAS de l'écran)

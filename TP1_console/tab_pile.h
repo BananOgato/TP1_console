@@ -4,7 +4,7 @@
  *
  * Librarie de gestion pour une pile.
  * le nouveau type t_pile qui permet de creer une pile avec init_pile(int taille);
- * 
+ *
  * les principales fonction sont implementé comme:
  * ajouter_a_pile(t_pile* pile, t_element item);
  * enlever_a_pile(t_pile* pile);
@@ -13,17 +13,17 @@
 
 #pragma once
 
-/* ======== ========== ========== ========== ========== ========== ========== ========== =======  /
- * LIBRARIES
- * ======== ========== ========== ========== ========== ========== ========== ========== ======= */
+ /* ======== ========== ========== ========== ========== ========== ========== ========== =======  /
+  * LIBRARIES
+  * ======== ========== ========== ========== ========== ========== ========== ========== ======= */
 
 #include "tab_points.h"
 
-/* ======== ========== ========== ========== ========== ========== ========== ========== =======  /
- * DEFINITIONS types
- * ======== ========== ========== ========== ========== ========== ========== ========== ======= */
+  /* ======== ========== ========== ========== ========== ========== ========== ========== =======  /
+   * DEFINITIONS types
+   * ======== ========== ========== ========== ========== ========== ========== ========== ======= */
 
-// le type de l'elements qui constitura la pile
+   // le type de l'elements qui constitura la pile
 typedef t_point t_element;
 
 /* ======== ========== ========== ========== ========== ========== ========== ========== =======  /
@@ -40,11 +40,11 @@ typedef struct {
  * DEFINITIONS DE FONCTIONS
  * ======== ========== ========== ========== ========== ========== ========== ========== ======= */
 
-/// <summary>
-/// Créer et renvoie une pile de la taille taille
-/// </summary>
-/// <param name="taille">La taille de la futur pile créer</param>
-/// <returns>La pile créer</returns>
+ /// <summary>
+ /// Créer et renvoie une pile de la taille taille
+ /// </summary>
+ /// <param name="taille">La taille de la futur pile créer</param>
+ /// <returns>La pile créer</returns>
 t_pile init_pile(int taille);
 
 /// <summary>
