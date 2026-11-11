@@ -1,19 +1,44 @@
-/* ======== ========== ========== ========== ========== ========== ========== ========== ======== /
- * Par : MUC Briana et LABRE Paul
+/* ======== ========== ========== ========== ========== ========== ========== ========== *
+ * Par : MUCCIARONE Briana et LABRE Paul
  * Date : 28 oct 2026
  *
- * Cette libraries permet de gerer les types t_point
- * ======== ========== ========== ========== ========== ========== ========== ========== ======= */
-
+ * Cette libraries permet de gerer les types t_point. 
+ * On y retrouve les fonctions suivantes:
+ * - distance: Cette fonction calcule la distance entre deux points
+ * - prod_vectoriel: Cette fonction calcule le produit vectoriel de deux vecteurs.
+ * - coord_polaire: Cette fonction retourne l'angle polaire d'un point.
+ *					par rapport à l'origine.
+ * - alea: Cette fonction retourne un entier aléatoire.
+ * - init_tab_alea: Cette fonction initialise un tableau avec des points aléatoires.
+ * - trouver_pt_minimal: Cette fonction trouve l'indice du point minimal.
+ * - swap: Cette fonction permute deux point d'un tableau.
+ * - placer_pt_reference: Cette fonction place le point minimal et crée la référence 
+ *						  horizontale.
+ * - trier_pts: Cette fonction trie les points en ordre croissant selon leurs
+ *				angles polaires.
+ * - calcul_coord_polaires: Cette fonction calcule les radians et  les distances 
+ *							pour tous les points.
+ * ======== ========== ========== ========== ========== ========== ========== ========== */
 
 #include "tab_points.h"
 
- /* ======== ========== ========== ========== ========== ========== ========== ========== =======  /
-  * FONCTIONS
-  * ======== ========== ========== ========== ========== ========== ========== ========== ======= */
+ /* ======== ========== ========== ========== ========== ========== ========== ========== */
+ /*										FONCTIONS										  */
+ /* ======== ========== ========== ========== ========== ========== ========== ========== */
 
-  // DISTANCE : (Par Paul)
-  // fais la racine carré de la somme des difference X et Y au carré (la norme du vecteur AB)
+/* ======== ========== ========== ========== ========== ========== ========== ========== *
+ * DISTANCE 
+ * Codé par Paul
+ * Cette fonction fais la racine carré de la somme des difference X et Y 
+ * au carré (la norme du vecteur AB).
+ * 
+ * Paramètres: 
+ *  -pA: point A
+ *  -pB: point B
+ * Valeur de retour: 
+ 
+ * ======== ========== ========== ========== ========== ========== ========== ========== */
+
 double distance(t_point* pA, t_point* pB) {
 	return sqrt(CARRE(pA->posx - pB->posx) + CARRE(pA->posy - pB->posy));
 }
