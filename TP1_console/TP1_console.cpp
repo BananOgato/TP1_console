@@ -77,7 +77,6 @@ int main() {
 		}
 
 		printf("Simulation en cours | %d tests par moyenne :\n", NB_TESTS);
-		// Nombre de points utilisé pour la série de simulations courante.
 		for (int n = NB_PTS_MIN; n <= NB_PTS_MAX; n += NB_PTS_PAS) {
 			// Moyenne du nombre de sommets de l'enveloppe convexe.
 			double moyenne = simulation_moyenne(n, NB_TESTS);
