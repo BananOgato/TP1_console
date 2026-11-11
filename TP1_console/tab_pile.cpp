@@ -13,13 +13,13 @@
 
 #include "tab_pile.h"
 
- /* ======== ========== ========== ========== ========== ========== ========== ========== =======  /
-  * FONCTIONS
-  * ======== ========== ========== ========== ========== ========== ========== ========== ======= */
+/* ======== ========== ========== ========== ========== ========== ========== ========== =======  /
+ * FONCTIONS
+ * ======== ========== ========== ========== ========== ========== ========== ========== ======= */
 
-  // INIT_PILE
-  // creer une nouvelle pile et y alloue la mémoire en fonction de la taille
-  // met le sommet a -1 car la pile est vide
+// INIT_PILE
+// creer une nouvelle pile et y alloue la mémoire en fonction de la taille
+// met le sommet a -1 car la pile est vide
 t_pile init_pile(int taille) {
 	// futur pile qui sera retournée
 	t_pile pile;
