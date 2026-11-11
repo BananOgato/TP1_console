@@ -9,11 +9,11 @@
 #include <math.h>
 #include <time.h>
 
- /* ======== ========== ========== ========== ========== ========== ========== ========== =======  /
-  * MACRO-FONCTIONS
-  * ======== ========== ========== ========== ========== ========== ========== ========== ======= */
+/* ======== ========== ========== ========== ========== ========== ========== ========== =======  /
+ * MACRO-FONCTIONS
+ * ======== ========== ========== ========== ========== ========== ========== ========== ======= */
 
-  // retourne le carré de x
+// retourne le carré de x
 #define CARRE(x) ((x) * (x))
 // retourne valeur absolue de x
 #define ABS(x) (x < 0) ? (-x) : (x)
@@ -22,7 +22,7 @@
  * CONSTANTES
  * ======== ========== ========== ========== ========== ========== ========== ========== ======= */
 
- // PI a la 15em décimal près
+// PI a la 15em décimal près
 #define PI 3.141592653589793
 // La taille max du tableau de t_points
 #define TAILLE 20
@@ -42,13 +42,13 @@ typedef struct {
  * DEFINITIONS DE FONCTIONS
  * ======== ========== ========== ========== ========== ========== ========== ========== ======= */
 
- /// <summary>
- /// Permet de faire le produit vectoriel de v(p_ref pa) X v(p_ref pB)
- // </summary>
- /// <param name="p_ref"></param>
- /// <param name="pA"></param>
- /// <param name="pB"></param>
- /// <returns>v(p_ref pa) X v(p_ref pB)</returns>
+/// <summary>
+/// Permet de faire le produit vectoriel de v(p_ref pa) X v(p_ref pB)
+/// </summary>
+/// <param name="p_ref"></param>
+/// <param name="pA"></param>
+/// <param name="pB"></param>
+/// <returns>v(p_ref pa) X v(p_ref pB)</returns>
 double prod_vectoriel(t_point* p_ref, t_point* pA, t_point* pB);
 
 /// <summary>

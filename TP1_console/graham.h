@@ -15,11 +15,11 @@
 #include "tab_pile.h"
 #include "affichage.h"
 
-  /* ======== ========== ========== ========== ========== ========== ========== ========== =======  /
-   * CONSTANTE
-   * ======== ========== ========== ========== ========== ========== ========== ========== ======= */
+/* ======== ========== ========== ========== ========== ========== ========== ========== =======  /
+ * CONSTANTE
+ * ======== ========== ========== ========== ========== ========== ========== ========== ======= */
 
-   // definis le temps de delais les dessins de trait
+// definis le temps de delais les dessins de trait
 #define DELAIS_ECRANS 50
 // nombre de simulations par moyenne
 #define NB_TESTS		10000	
